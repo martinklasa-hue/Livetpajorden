@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8" />
+  <title>Träna på att beskriva händelseförlopp – Geografi</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f5f5f5;
+      margin: 0;
+      padding: 1.5rem;
+      line-height: 1.4;
+    }
+    h1 {
+      margin-bottom: 1rem;
+    }
+    .box {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      padding: 1rem 1rem 0.5rem;
+      margin-bottom: 1.25rem;
+    }
+    .label {
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+    .terms {
+      font-size: 0.9rem;
+      background: #eef6ff;
+      border-left: 4px solid #4d88ff;
+      padding: 0.5rem 0.75rem;
+      border-radius: 4px;
+      margin-bottom: 0.5rem;
+    }
+    textarea {
+      width: 100%;
+      min-height: 120px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 0.5rem;
+      font-family: inherit;
+      font-size: 0.95rem;
+      resize: vertical;
+      margin-bottom: 0.75rem;
+    }
+    button {
+      background: #2563eb;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 0.5rem 1rem;
+      font-size: 0.9rem;
+      cursor: pointer;
+      margin-bottom: 0.75rem;
+    }
+    button:active {
+      transform: scale(0.995);
+    }
+    .small {
+      font-size: 0.75rem;
+      color: #555;
+      margin-bottom: 0.25rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>Så uppstår nederbörd och väderfenomen</h1>
+  <p class="small">Din text sparas i din webbläsare (localStorage). Du kan komma tillbaka och fortsätta skriva.</p>
+
+  <!-- Steg 1 -->
+  <div class="box">
+    <div class="label">Steg 1 – Förklara hur nederbörd uppstår</div>
+    <div class="terms">
+      <strong>Begrepp:</strong> konvektiv nederbörd, orografisk nederbörd, frontnederbörd, avdunstning, kondensering, moln
+    </div>
+    <p class="small">
+      Instruktion: Beskriv i flera steg hur vattenånga stiger, kyls av och blir till nederbörd. Förklara gärna skillnaden mellan de tre typerna av nederbörd. Använd minst tre begrepp.
+    </p>
+    <textarea id="steg1" placeholder="Skriv din förklaring här..."></textarea>
+  </div>
+
+  <!-- Steg 2 -->
+  <div class="box">
+    <div class="label">Steg 2 – Förklara högtryck och lågtryck</div>
+    <div class="terms">
+      <strong>Begrepp:</strong> högtryck, lågtryck, vindar, lufttryck, temperatur, luftcirkulation, atmosfär
+    </div>
+    <p class="small">
+      Instruktion: Förklara hur varm och kall luft rör sig, och varför det blir olika väder vid högtryck och lågtryck. Skriv i ordning så att någon annan kan följa dina steg.
+    </p>
+    <textarea id="steg2" placeholder="Skriv din förklaring här..."></textarea>
+  </div>
+
+  <!-- Steg 3 -->
+  <div class="box">
+    <div class="label">Steg 3 – Resonera om sårbarhet</div>
+    <div class="terms">
+      <strong>Begrepp:</strong> sårbarhet, klimatzon, torka, översvämning, naturkatastrof, anpassning
+    </div>
+    <p class="small">
+      Instruktion: Resonera om hur olika väder och nederbörd kan skapa problem på olika platser på jorden. Ge minst ett exempel på torka och ett på översvämning.
+    </p>
+    <textarea id="steg3" placeholder="Skriv ditt resonemang här..."></textarea>
+  </div>
+
+  <!-- Samlad text -->
+  <div class="box">
+    <div class="label">Steg 4 – Samlad text</div>
+    <p class="small">Här kan du samla allt du skrivit ovan. Klicka på knappen för att kopiera ner texter från steg 1–3.</p>
+    <button id="samlaBtn">Samla text från steg 1–3</button>
+    <textarea id="samlad" placeholder="Din samlade text kommer hit. Du kan sedan kopiera och lämna in."></textarea>
+  </div>
+
+  <script>
+    // Nycklar för localStorage
+    const KEY1 = "geo_steg1";
+    const KEY2 = "geo_steg2";
+    const KEY3 = "geo_steg3";
+    const KEY4 = "geo_samlad";
+
+    const steg1 = document.getElementById("steg1");
+    const steg2 = document.getElementById("steg2");
+    const steg3 = document.getElementById("steg3");
+    const samlad = document.getElementById("samlad");
+    const samlaBtn = document.getElementById("samlaBtn");
+
+    // Ladda ev. sparad text
+    window.addEventListener("DOMContentLoaded", () => {
+      steg1.value = localStorage.getItem(KEY1) || "";
+      steg2.value = localStorage.getItem(KEY2) || "";
+      steg3.value = localStorage.getItem(KEY3) || "";
+      samlad.value = localStorage.getItem(KEY4) || "";
+    });
+
+    // Spara vid ändring
+    steg1.addEventListener("input", () => {
+      localStorage.setItem(KEY1, steg1.value);
+    });
+    steg2.addEventListener("input", () => {
+      localStorage.setItem(KEY2, steg2.value);
+    });
+    steg3.addEventListener("input", () => {
+      localStorage.setItem(KEY3, steg3.value);
+    });
+    samlad.addEventListener("input", () => {
+      localStorage.setItem(KEY4, samlad.value);
+    });
+
+    // Samla text från de tre rutorna
+    samlaBtn.addEventListener("click", () => {
+      const text = [
+        "Steg 1 – Nederbörd:",
+        steg1.value.trim(),
+        "",
+        "Steg 2 – Hög- och lågtryck:",
+        steg2.value.trim(),
+        "",
+        "Steg 3 – Sårbarhet:",
+        steg3.value.trim()
+      ].join("\n");
+      samlad.value = text;
+      localStorage.setItem(KEY4, text);
+    });
+  </script>
+</body>
+</html>
